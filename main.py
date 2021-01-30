@@ -19,15 +19,23 @@ async def on_message(message):
     if message.content.startswith("!google"):
         user_id = message.author.id
         search_text = message.content[8:]
-        result = search(search_text, user_id)
-        for item in result:
-            await message.channel.send(item)
+        if not search_text:
+            await message.channel.send("Please provide a search term.")
+        else:
+            result = search(search_text, user_id)
+            for item in result:
+                await message.channel.send(item)
 
     if message.content.startswith("!recent"):
         user_id = message.author.id
         search_text = message.content[8:]
-        result = get_search_history(search_text, user_id)
-        await message.channel.send(result)
+        if not search_text:
+            await message.channel.send(
+                "Please provide a search term to fetch recent history."
+            )
+        else:
+            result = get_search_history(search_text, user_id)
+            await message.channel.send(result)
 
 keep_alive()
 client.run(TOKEN)
