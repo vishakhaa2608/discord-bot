@@ -59,17 +59,17 @@ def get_result(search_text):
         },
     )
     response_json = response.json()
-    blocks = []
-    for item in response_json["items"]:
-        blocks.append(
-            "**"
-            + str(item["title"])
-            + "**"
-            + "\n"
-            + item["snippet"]
-            + item["link"]
-            + "\n\n"
-        )
+    blocks = [
+        "**"
+        + str(item["title"])
+        + "**"
+        + "\n"
+        + item["snippet"]
+        + item["link"]
+        + "\n\n"
+        for item in response_json.get("items") or []
+    ]
+
     return blocks
 
 
