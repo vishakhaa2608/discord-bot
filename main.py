@@ -1,24 +1,11 @@
-import os
 import discord
-
 
 from keep_alive import keep_alive
 from settings import TOKEN
-from utils import (
-    get_search_history,
-    search
-)
+from utils import get_search_history, search
 
 
 client = discord.Client()
-
-
-@client.event
-async def on_member_join(member):
-    await member.create_dm()
-    await member.dm_channel.send(
-        f'Hi {member.name}, welcome to Discord Bot Server!'
-    )
 
 
 @client.event
@@ -26,8 +13,8 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content == 'hi':
-        await message.channel.send('hey')
+    if message.content == "hi":
+        await message.channel.send("hey")
 
     if message.content.startswith("!google"):
         user_id = message.author.id

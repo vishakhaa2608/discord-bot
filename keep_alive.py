@@ -6,16 +6,16 @@ from threading import Thread
     Uptime Robot is set to ping the bot's web server on heroku every 5 minutes. 
     With constant pings, the bot will never enter the sleeping stage and will just keep running.
 """
-app = Flask('')
+app = Flask("")
 
 
-@app.route('/')
+@app.route("/")
 def home():
     return "Hello. I am alive!"
 
 
 def run():
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host="0.0.0.0", port=8080)
 
 
 def keep_alive():
